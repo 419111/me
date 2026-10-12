@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鹿小野 | 個人網站 & 學習歷程檔案</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#130B1E',
+                            card: 'rgba(29, 17, 43, 0.7)',
+                            accent: '#A855F7',
+                            light: '#C084FC',
+                            deepPurple: '#2D1540',
+                            vibrant: '#8A5CF5',
+                            neon: '#E9D5FF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0d0714;
+            color: #f3e8ff;
+            font-family: 'Noto Sans TC', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(35, 18, 56, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(168, 85, 247, 0.18);
+        }
+
+        .glass-card {
+            background: rgba(28, 15, 45, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(192, 132, 252, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(138, 92, 245, 0.3);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #E9D5FF 0%, #C084FC 50%, #8A5CF5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #2D1540 0%, #4C1D95 50%, #8A5CF5 100%);
+        }
+
+        .gradient-border {
+            position: relative;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(138, 92, 245, 0.05));
+            padding: 1px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0714;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b1d60;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8A5CF5;
+        }
+
+        .glow-effect {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(138, 92, 245, 0.25) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-brand-accent selection:text-white">
+
+    <!-- Ambient Glowing Background Elements -->
+    <div class="glow-effect top-10 left-10"></div>
+    <div class="glow-effect top-1/3 right-10"></div>
+    <div class="glow-effect bottom-1/4 left-1/4"></div>
+
+    <!-- Floating Navbar -->
+    <header class="fixed top-4 left-0 right-0 z-50 px-4 md:px-8 max-w-6xl mx-auto">
+        <nav class="glass-panel rounded-full px-6 py-3 flex items-center justify-between shadow-2xl shadow-purple-950/50">
+            <!-- Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center font-bold text-white text-lg shadow-md group-hover:scale-105 transition-transform">
+                    鹿
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold tracking-wider text-white text-base">鹿小野</span>
+                    <span class="text-[10px] text-purple-300 tracking-wider">資料處理科</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#about" class="text-purple-200 hover:text-brand-neon transition-colors flex items-center gap-2">
+                    <i class="fa-solid fa-user-gear text-brand-accent"></i> 關於我
+                </a>
+                <a href="#plan" class="text-purple-200 hover:text-brand-neon transition-colors flex items-center gap-2">
+                    <i class="fa-solid fa-compass text-brand-accent"></i> 讀書計畫
+                </a>
+                <a href="#portfolio" class="text-purple-200 hover:text-brand-neon transition-colors flex items-center gap-2">
+                    <i class="fa-solid fa-folder-open text-brand-accent"></i> 作品集
+                </a>
+            </div>
+
+            <!-- Action Button -->
+            <div class="hidden md:block">
+                <a href="#contact" class="px-5 py-2 rounded-full gradient-bg text-white text-xs font-semibold hover:opacity-90 transition-all shadow-lg shadow-purple-900/40 hover:shadow-purple-700/60 flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> 聯絡我
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="menu-btn" class="md:hidden text-purple-200 hover:text-white focus:outline-none p-2" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel mt-3 rounded-2xl p-5 flex flex-col gap-4 shadow-2xl border border-purple-500/20">
+            <a href="#about" class="mobile-link flex items-center gap-3 text-purple-100 hover:text-brand-neon py-2 border-b border-purple-900/40">
+                <i class="fa-solid fa-user-gear text-brand-accent w-5"></i> 關於我
+            </a>
+            <a href="#plan" class="mobile-link flex items-center gap-3 text-purple-100 hover:text-brand-neon py-2 border-b border-purple-900/40">
+                <i class="fa-solid fa-compass text-brand-accent w-5"></i> 讀書計畫
+            </a>
+            <a href="#portfolio" class="mobile-link flex items-center gap-3 text-purple-100 hover:text-brand-neon py-2 border-b border-purple-900/40">
+                <i class="fa-solid fa-folder-open text-brand-accent w-5"></i> 作品集
+            </a>
+            <a href="#contact" class="mobile-link flex items-center justify-center gap-2 text-white gradient-bg py-2.5 rounded-xl font-medium mt-2">
+                <i class="fa-solid fa-paper-plane"></i> 聯絡我
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-6xl mx-auto px-4 pt-28 pb-16 space-y-24">
+
+        <!-- Hero Section -->
+        <section id="hero" class="pt-8 md:pt-16 flex flex-col md:flex-row items-center justify-between gap-12 relative">
+            <div class="flex-1 space-y-6 text-center md:text-left z-10">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-purple-500/30 text-purple-200 text-xs md:text-sm font-medium animate-pulse">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    新北市立三重商工 · 資料處理科
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight">
+                    你好，我是 <span class="gradient-text">鹿小野</span>
+                </h1>
+
+                <p class="text-lg md:text-xl text-purple-200/90 leading-relaxed font-light">
+                    熱愛<span class="text-brand-light font-semibold">音樂</span>與<span class="text-brand-light font-semibold">會計數據</span>，專注於資料處理與商業應用的跨領域探索者。
+                </p>
+
+                <!-- Tags / Badges -->
+                <div class="flex flex-wrap gap-2.5 justify-center md:justify-start pt-2">
+                    <span class="px-3.5 py-1.5 rounded-lg bg-purple-900/40 border border-purple-500/30 text-xs text-purple-200 flex items-center gap-1.5">
+                        <i class="fa-solid fa-pump-soap text-brand-light"></i> 高一上衛生股長
+                    </span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-purple-900/40 border border-purple-500/30 text-xs text-purple-200 flex items-center gap-1.5">
+                        <i class="fa-solid fa-user-shield text-brand-light"></i> 高一下班長
+                    </span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-purple-900/40 border border-purple-500/30 text-xs text-purple-200 flex items-center gap-1.5">
+                        <i class="fa-solid fa-calculator text-brand-light"></i> 解會計狂熱者
+                    </span>
+                    <span class="px-3.5 py-1.5 rounded-lg bg-purple-900/40 border border-purple-500/30 text-xs text-purple-200 flex items-center gap-1.5">
+                        <i class="fa-solid fa-guitar text-brand-light"></i> 音樂愛好者
+                    </span>
+                </div>
+
+                <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#about" class="px-7 py-3.5 rounded-xl gradient-bg text-white font-semibold shadow-lg shadow-purple-900/50 hover:shadow-purple-600/50 transition-all flex items-center justify-center gap-2">
+                        探索我的經歷 <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="#portfolio" class="px-7 py-3.5 rounded-xl glass-panel text-purple-200 font-semibold hover:bg-purple-900/40 hover:text-white transition-all flex items-center justify-center gap-2">
+                        瀏覽作品集 <i class="fa-solid fa-folder"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Avatar / Visual Card -->
+            <div class="w-full md:w-5/12 flex justify-center z-10">
+                <div class="relative group w-72 h-80 md:w-80 md:h-96">
+                    <div class="absolute -inset-1 rounded-3xl gradient-bg opacity-75 blur group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                    <div class="relative w-full h-full glass-card rounded-3xl p-6 flex flex-col justify-between items-center text-center overflow-hidden">
+                        <div class="w-28 h-28 md:w-36 md:h-36 rounded-full gradient-bg p-1 shadow-inner relative mt-4">
+                            <div class="w-full h-full rounded-full bg-brand-dark flex items-center justify-center overflow-hidden">
+                                <i class="fa-solid fa-user-astronaut text-5xl md:text-6xl text-purple-300"></i>
+                            </div>
+                            <span class="absolute bottom-1 right-1 w-6 h-6 bg-emerald-500 border-2 border-brand-dark rounded-full flex items-center justify-center text-[10px] text-white">
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+                        </div>
+                        <div class="space-y-1">
+                            <h3 class="text-xl font-bold text-white">鹿小野</h3>
+                            <p class="text-xs text-purple-300">三重商工 · 資處科學生</p>
+                        </div>
+                        <div class="w-full grid grid-cols-2 gap-2 pt-3 border-t border-purple-800/40 text-xs">
+                            <div class="bg-purple-950/50 py-2 rounded-lg">
+                                <div class="text-purple-400 text-[10px]">專業證照</div>
+                                <div class="font-bold text-white">5+ 項通過</div>
+                            </div>
+                            <div class="bg-purple-950/50 py-2 rounded-lg">
+                                <div class="text-purple-400 text-[10px]">學習態度</div>
+                                <div class="font-bold text-purple-200">嚴謹 · 創新</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 關於我 (About Me) Section -->
+        <section id="about" class="space-y-10 scroll-mt-28">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight gradient-text">關於我</h2>
+                <p class="text-purple-300 text-sm max-w-xl mx-auto">兼具邏輯思考與藝術感性的資料處理科學生，專注於商管與資訊的融合發展</p>
+            </div>
+
+            <!-- Profile Overview -->
+            <div class="glass-card rounded-2xl p-6 md:p-8 space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white">
+                        <i class="fa-solid fa-address-card text-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">個人簡介</h3>
+                </div>
+                <p class="text-purple-100 leading-relaxed text-sm md:text-base font-light">
+                    就讀於<span class="text-purple-300 font-medium">新北市立三重商工資料處理科</span>。我對數字與數據具備高度敏銳度，平時最享受釐清複雜的帳務關係與解答會計難題。除了商業邏輯，我也熱衷於音樂創作與樂器彈奏，這種兼具理性與感性的特性，讓我能從不同角度看待與處理問題。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Leadership Experience -->
+                <div class="glass-card rounded-2xl p-6 space-y-5">
+                    <div class="flex items-center gap-3 border-b border-purple-800/40 pb-4">
+                        <div class="w-10 h-10 rounded-xl bg-purple-900/60 border border-purple-500/30 flex items-center justify-center text-brand-neon">
+                            <i class="fa-solid fa-users-gear text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">幹部經歷</h3>
+                            <p class="text-xs text-purple-300">Leadership & Service</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex gap-4 items-start">
+                            <div class="w-24 text-xs font-semibold text-purple-300 shrink-0 pt-1">高一上學期</div>
+                            <div class="space-y-1">
+                                <h4 class="text-sm font-bold text-white flex items-center gap-2">
+                                    衛生股長 <span class="text-[10px] px-2 py-0.5 rounded bg-purple-800/50 text-purple-200">環境管理</span>
+                                </h4>
+                                <p class="text-xs text-purple-200/80 leading-relaxed">
+                                    負責班級每日環境衛生規劃、整潔區域統籌分配，培養了極強的組織能力與責任感。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 items-start pt-2 border-t border-purple-900/30">
+                            <div class="w-24 text-xs font-semibold text-purple-300 shrink-0 pt-1">高一下學期</div>
+                            <div class="space-y-1">
+                                <h4 class="text-sm font-bold text-white flex items-center gap-2">
+                                    班長 <span class="text-[10px] px-2 py-0.5 rounded bg-purple-800/50 text-purple-200">團隊領導</span>
+                                </h4>
+                                <p class="text-xs text-purple-200/80 leading-relaxed">
+                                    協助班導師處理日常班務，擔任同學與老師之間良好的溝通橋樑，強化溝通協調與應變能力。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interests & Hobbies -->
+                <div class="glass-card rounded-2xl p-6 space-y-5">
+                    <div class="flex items-center gap-3 border-b border-purple-800/40 pb-4">
+                        <div class="w-10 h-10 rounded-xl bg-purple-900/60 border border-purple-500/30 flex items-center justify-center text-brand-neon">
+                            <i class="fa-solid fa-heart text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">興趣與專長</h3>
+                            <p class="text-xs text-purple-300">Passions & Interests</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-purple-950/40 p-4 rounded-xl border border-purple-800/30 space-y-2">
+                            <div class="text-brand-light text-2xl">
+                                <i class="fa-solid fa-guitar"></i>
+                            </div>
+                            <h4 class="text-sm font-bold text-white">玩音樂</h4>
+                            <p class="text-xs text-purple-300 leading-relaxed">
+                                沉浸於樂器演奏與音樂創作，享受節奏與旋律帶來的專注感與靈感突破。
+                            </p>
+                        </div>
+
+                        <div class="bg-purple-950/40 p-4 rounded-xl border border-purple-800/30 space-y-2">
+                            <div class="text-brand-light text-2xl">
+                                <i class="fa-solid fa-file-invoice-dollar"></i>
+                            </div>
+                            <h4 class="text-sm font-bold text-white">解會計題目</h4>
+                            <p class="text-xs text-purple-300 leading-relaxed">
+                                熱衷於帳務平衡、資產負債表分析與邏輯推理，將解題視為思考迷宮解答。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="glass-card rounded-2xl p-6 md:p-8 space-y-6">
+                <div class="flex items-center justify-between border-b border-purple-800/40 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white">
+                            <i class="fa-solid fa-award text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">檢定證照</h3>
+                            <p class="text-xs text-purple-300">Certifications & Qualifications</p>
+                        </div>
+                    </div>
+                    <span class="text-xs px-3 py-1 rounded-full bg-purple-900/60 text-purple-200 border border-purple-500/30">持續考照中</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Cert 1 -->
+                    <div class="bg-purple-950/50 p-4 rounded-xl border border-purple-800/40 hover:border-brand-accent/50 transition-all flex items-start gap-3">
+                        <div class="p-2 rounded-lg bg-purple-900/60 text-brand-neon shrink-0">
+                            <i class="fa-solid fa-laptop-code text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">會計事務－資訊類</h4>
+                            <p class="text-xs text-purple-300">丙級技術士證照</p>
+                            <span class="inline-block mt-2 text-[10px] text-emerald-400 font-semibold"><i class="fa-solid fa-check-circle"></i> 已考取</span>
+                        </div>
+                    </div>
+
+                    <!-- Cert 2 -->
+                    <div class="bg-purple-950/50 p-4 rounded-xl border border-purple-800/40 hover:border-brand-accent/50 transition-all flex items-start gap-3">
+                        <div class="p-2 rounded-lg bg-purple-900/60 text-brand-neon shrink-0">
+                            <i class="fa-solid fa-pen-nib text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">會計事務－人工記帳</h4>
+                            <p class="text-xs text-purple-300">丙級技術士證照</p>
+                            <span class="inline-block mt-2 text-[10px] text-emerald-400 font-semibold"><i class="fa-solid fa-check-circle"></i> 已考取</span>
+                        </div>
+                    </div>
+
+                    <!-- Cert 3 -->
+                    <div class="bg-purple-950/50 p-4 rounded-xl border border-purple-800/40 hover:border-brand-accent/50 transition-all flex items-start gap-3">
+                        <div class="p-2 rounded-lg bg-purple-900/60 text-brand-neon shrink-0">
+                            <i class="fa-solid fa-chart-line text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">商會會計能力測驗</h4>
+                            <p class="text-xs text-purple-300">三級合格證明</p>
+                            <span class="inline-block mt-2 text-[10px] text-emerald-400 font-semibold"><i class="fa-solid fa-check-circle"></i> 已考取</span>
+                        </div>
+                    </div>
+
+                    <!-- Cert 4 -->
+                    <div class="bg-purple-950/50 p-4 rounded-xl border border-purple-800/40 hover:border-brand-accent/50 transition-all flex items-start gap-3">
+                        <div class="p-2 rounded-lg bg-purple-900/60 text-brand-neon shrink-0">
+                            <i class="fa-solid fa-chart-pie text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">GTC 認證 Spreadsheets</h4>
+                            <p class="text-xs text-purple-300">基本統計圖表設計</p>
+                            <span class="inline-block mt-2 text-[10px] text-emerald-400 font-semibold"><i class="fa-solid fa-check-circle"></i> 已考取</span>
+                        </div>
+                    </div>
+
+                    <!-- Cert 5 -->
+                    <div class="bg-purple-950/50 p-4 rounded-xl border border-purple-800/40 hover:border-brand-accent/50 transition-all flex items-start gap-3">
+                        <div class="p-2 rounded-lg bg-purple-900/60 text-brand-neon shrink-0">
+                            <i class="fa-solid fa-square-root-variable text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">GTC 認證 Spreadsheets</h4>
+                            <p class="text-xs text-purple-300">基本試算表函數應用</p>
+                            <span class="inline-block mt-2 text-[10px] text-emerald-400 font-semibold"><i class="fa-solid fa-check-circle"></i> 已考取</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 讀書計畫 (Study Plan) Section -->
+        <section id="plan" class="space-y-10 scroll-mt-28">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight gradient-text">讀書計畫</h2>
+                <p class="text-purple-300 text-sm max-w-xl mx-auto">循序漸進的學習藍圖，鏈結商業會計與資訊應用的跨域目標</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 近程 Plan -->
+                <div class="glass-card rounded-2xl p-6 space-y-4 flex flex-col justify-between border-t-4 border-t-purple-500">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold px-3 py-1 rounded-full bg-purple-900/80 text-purple-200">近程階段</span>
+                            <span class="text-xs text-purple-400">高中三年的厚植</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">高中紮根與精進</h3>
+                        <p class="text-xs text-purple-200/80 leading-relaxed font-light">
+                            深耕商業會計與資訊應用基礎技能。計畫挑戰乙級檢定證照，踴躍參與校內外專題競賽，維持優良且穩定的校內學術成績。
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs text-purple-300 pt-4 border-t border-purple-900/40">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-brand-accent"></i> 精進會計資訊軟體應用</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-brand-accent"></i> 挑戰乙級技術士認證</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-brand-accent"></i> 製作高質量學習歷程</li>
+                    </ul>
+                </div>
+
+                <!-- 中程 Plan -->
+                <div class="glass-card rounded-2xl p-6 space-y-4 flex flex-col justify-between border-t-4 border-t-brand-accent">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold px-3 py-1 rounded-full bg-purple-800 text-white">中程階段</span>
+                            <span class="text-xs text-purple-400">大學跨域整合</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">大學跨域與探索</h3>
+                        <p class="text-xs text-purple-200/80 leading-relaxed font-light">
+                            跨域整合「財務會計」與「大數據分析/資訊管理」。學習 Python/R 等程式語言於財務分析之應用，積極爭取企業實習機會。
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs text-purple-300 pt-4 border-t border-purple-900/40">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-brand-accent"></i> 掌握 Python 商業數據分析</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-brand-accent"></i> 深研財務管理與會計制度</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-brand-accent"></i> 參與產學合作與企業實習</li>
+                    </ul>
+                </div>
+
+                <!-- 遠程 Plan -->
+                <div class="glass-card rounded-2xl p-6 space-y-4 flex flex-col justify-between border-t-4 border-t-brand-neon">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold px-3 py-1 rounded-full bg-purple-900/80 text-purple-200">遠程階段</span>
+                            <span class="text-xs text-purple-400">職涯專業成就</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">職涯發展與賦能</h3>
+                        <p class="text-xs text-purple-200/80 leading-relaxed font-light">
+                            考取國家會計師證照或擔任商業數據分析師 (BI Analyst)。運用最新資訊與自動化工具協助企業進行財務轉型與決策賦能。
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs text-purple-300 pt-4 border-t border-purple-900/40">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-brand-accent"></i> 考取相關專業高階證照</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-brand-accent"></i> 成為商業數據分析專家</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-brand-accent"></i> 推動企業財務數位轉型</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 作品集 (Portfolio & Projects) Section -->
+        <section id="portfolio" class="space-y-10 scroll-mt-28">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight gradient-text">作品集</h2>
+                <p class="text-purple-300 text-sm max-w-xl mx-auto">點擊可切換不同類別作品，展現多面向的學習累積成果</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 md:gap-3">
+                <button class="filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-brand-accent text-white transition-all shadow-md" data-filter="all">
+                    全部作品
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold glass-panel text-purple-200 hover:text-white transition-all" data-filter="accounting">
+                    商業會計
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold glass-panel text-purple-200 hover:text-white transition-all" data-filter="tech">
+                    資訊技術
+                </button>
+                <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold glass-panel text-purple-200 hover:text-white transition-all" data-filter="music">
+                    音樂與個人
+                </button>
+            </div>
+
+            <!-- Portfolio Cards Container -->
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                
+                <!-- Project 1 -->
+                <div class="portfolio-item glass-card rounded-2xl p-6 space-y-4" data-category="tech">
+                    <div class="h-44 rounded-xl bg-purple-950/60 border border-purple-800/40 flex flex-col justify-center items-center p-4 relative overflow-hidden group">
+                        <i class="fa-solid fa-chart-column text-5xl text-brand-light mb-2 group-hover:scale-110 transition-transform"></i>
+                        <span class="text-xs font-bold text-white">GTC 試算表統計圖表與函數專題</span>
+                        <div class="absolute inset-0 bg-purple-900/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-xs font-semibold px-4 py-2 rounded-lg gradient-bg text-white">查看詳細專題內容</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold px-2.5 py-1 rounded bg-purple-900/60 text-purple-300">資訊技術 / 試算表應用</span>
+                        <h3 class="text-lg font-bold text-white mt-2">GTC Spreadsheets 商業數據圖表整合</h3>
+                        <p class="text-xs text-purple-200/80 leading-relaxed mt-1 font-light">
+                            運用高級試算表函數與圖表設計技巧，建構動態數據儀表板，將繁雜的財務數據可視化。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="portfolio-item glass-card rounded-2xl p-6 space-y-4" data-category="accounting">
+                    <div class="h-44 rounded-xl bg-purple-950/60 border border-purple-800/40 flex flex-col justify-center items-center p-4 relative overflow-hidden group">
+                        <i class="fa-solid fa-file-signature text-5xl text-brand-light mb-2 group-hover:scale-110 transition-transform"></i>
+                        <span class="text-xs font-bold text-white">會計資訊化實務帳務系統</span>
+                        <div class="absolute inset-0 bg-purple-900/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-xs font-semibold px-4 py-2 rounded-lg gradient-bg text-white">查看詳細專題內容</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold px-2.5 py-1 rounded bg-purple-900/60 text-purple-300">商業會計 / 資訊實務</span>
+                        <h3 class="text-lg font-bold text-white mt-2">企業全套帳務處理與財務報表產出</h3>
+                        <p class="text-xs text-purple-200/80 leading-relaxed mt-1 font-light">
+                            結合會計資訊丙級技術，模擬真實企業傳票輸入、日記帳生成與結算損益表/資產負債表產出。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="portfolio-item glass-card rounded-2xl p-6 space-y-4" data-category="music">
+                    <div class="h-44 rounded-xl bg-purple-950/60 border border-purple-800/40 flex flex-col justify-center items-center p-4 relative overflow-hidden group">
+                        <i class="fa-solid fa-compact-disc text-5xl text-brand-light mb-2 group-hover:scale-110 transition-transform"></i>
+                        <span class="text-xs font-bold text-white">個人音樂練習與創作紀錄</span>
+                        <div class="absolute inset-0 bg-purple-900/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-xs font-semibold px-4 py-2 rounded-lg gradient-bg text-white">查看詳細專題內容</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold px-2.5 py-1 rounded bg-purple-900/60 text-purple-300">音樂與個人 / 興趣展演</span>
+                        <h3 class="text-lg font-bold text-white mt-2">樂曲改編與樂器演奏合輯</h3>
+                        <p class="text-xs text-purple-200/80 leading-relaxed mt-1 font-light">
+                            紀錄自主練習過程、旋律編排想法與團隊演出紀錄，展現感性創意與持續堅持的精神。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="portfolio-item glass-card rounded-2xl p-6 space-y-4" data-category="music">
+                    <div class="h-44 rounded-xl bg-purple-950/60 border border-purple-800/40 flex flex-col justify-center items-center p-4 relative overflow-hidden group">
+                        <i class="fa-solid fa-people-roof text-5xl text-brand-light mb-2 group-hover:scale-110 transition-transform"></i>
+                        <span class="text-xs font-bold text-white">班級管理與環境維護專案</span>
+                        <div class="absolute inset-0 bg-purple-900/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-xs font-semibold px-4 py-2 rounded-lg gradient-bg text-white">查看詳細專題內容</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold px-2.5 py-1 rounded bg-purple-900/60 text-purple-300">班級幹部 / 服務學習</span>
+                        <h3 class="text-lg font-bold text-white mt-2">衛生股長與班長職務企劃</h3>
+                        <p class="text-xs text-purple-200/80 leading-relaxed mt-1 font-light">
+                            整理班級環境劃分表格、秩序維持溝通流程與活動參與紀錄，呈現溝通與領導成效。
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact & Edits Notice Footer Section -->
+        <section id="contact" class="glass-card rounded-3xl p-8 md:p-12 border border-purple-500/30 text-center space-y-6 relative overflow-hidden scroll-mt-28">
+            <div class="max-w-2xl mx-auto space-y-4">
+                <div class="w-12 h-12 rounded-full gradient-bg mx-auto flex items-center justify-center text-white text-xl">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">與我聯繫 / 內容編輯說明</h2>
+                <p class="text-purple-200 text-xs md:text-sm font-light leading-relaxed">
+                    本網站為三重商工資料處理科 <span class="text-brand-light font-semibold">鹿小野</span> 之學習歷程網頁展示版。頁面內容已模組化，方便隨時補充更新。
+                </p>
+
+                <!-- Quick info pills -->
+                <div class="flex flex-wrap justify-center gap-4 text-xs pt-2">
+                    <div class="px-4 py-2 rounded-xl bg-purple-950/60 border border-purple-800/40 text-purple-200 flex items-center gap-2">
+                        <i class="fa-solid fa-school text-brand-accent"></i> 新北市立三重商工
+                    </div>
+                    <div class="px-4 py-2 rounded-xl bg-purple-950/60 border border-purple-800/40 text-purple-200 flex items-center gap-2">
+                        <i class="fa-solid fa-laptop text-brand-accent"></i> 資料處理科
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-purple-900/40 py-8 text-center text-xs text-purple-400">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 鹿小野 (Lu Xiao Ye) · 三重商工資料處理科. All Rights Reserved.</p>
+            <p class="text-purple-500">深紫與淺紫漸層主題 · RWD響應式設計</p>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript Logic -->
+    <script>
+        // Mobile Navigation Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Portfolio Filter Functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active style from all buttons
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-brand-accent', 'text-white', 'shadow-md');
+                    b.classList.add('glass-panel', 'text-purple-200');
+                });
+
+                // Add active style to clicked button
+                btn.classList.add('active', 'bg-brand-accent', 'text-white', 'shadow-md');
+                btn.classList.remove('glass-panel', 'text-purple-200');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
